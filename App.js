@@ -38,12 +38,12 @@ export default function App() {
       let randomNumber = Math.floor(Math.random() * 6 + 1)
       isLucky(randomNumber)
       switch(randomNumber) {
-        case 1: setLuckyNumberImage(require("./assets/dice-images/1.png")); break;
-        case 2: setLuckyNumberImage(require("./assets/dice-images/2.png")); break;
-        case 3: setLuckyNumberImage(require("./assets/dice-images/3.png")); break;
-        case 4: setLuckyNumberImage(require("./assets/dice-images/4.png")); break;
-        case 5: setLuckyNumberImage(require("./assets/dice-images/5.png")); break;
-        case 6: setLuckyNumberImage(require("./assets/dice-images/6.png")); break;
+        case 1: setWinningNumberImage(require("./assets/dice-images/1.png")); break;
+        case 2: setWinningNumberImage(require("./assets/dice-images/2.png")); break;
+        case 3: setWinningNumberImage(require("./assets/dice-images/3.png")); break;
+        case 4: setWinningNumberImage(require("./assets/dice-images/4.png")); break;
+        case 5: setWinningNumberImage(require("./assets/dice-images/5.png")); break;
+        case 6: setWinningNumberImage(require("./assets/dice-images/6.png")); break;
         default: break;
       }
     }
@@ -53,12 +53,20 @@ export default function App() {
     setLuckyNumberImage(require("./assets/dice-images/smiley.png"))
     setWinningNumberImage(require("./assets/dice-images/smiley.png"))
     setLuckyNumber(0)
-    setStatus('To see if you are lucky')
+    setStatus('To see if you are lucky...')
   }
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.header}>Lucky number</Text>
+      <Text style={styles.plain}>First throw the dice to get your lucky number</Text>
+      <Button title='STEP 1: THROW YOUR LUCKY NUMBER' onPress={randomLuckyNumber}></Button>
+      <Image style={styles.dice} source={luckyNumberImage}></Image>
+      <Text style={styles.plain}>Then throw the dice to get the winning number</Text>
+      <Button title='STEP 2: THROW WINNING NUMBER' onPress={randomWinningNumber}></Button>
+      <Image style={styles.dice} source={winningNumberImage}></Image>
+      <Text style={styles.status}>{status}</Text>
+      <Button title='RESTART THE GAME' onPress={restart}></Button>
       <StatusBar style="auto" />
     </View>
   );
@@ -84,5 +92,8 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 15,
     marginBottom: 25
+  },
+  plain: {
+    marginBottom: 15
   }
 });
